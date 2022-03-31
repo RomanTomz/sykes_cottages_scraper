@@ -19,12 +19,13 @@ class SykesCrawlerSpider(CrawlSpider):
             yield {
                 'title':cottage.xpath(".//div[@class='prop-head-container ']/a/hgroup/h2/text()").get(),
                 'price_from':cottage.xpath(".//div/div[2]/p/em/text()").get().replace('£',''),
-                'was_price':cottage.xpath(".//div/div[2]/p/strike/text()").get().replace('£',''),
+                'wasPrice':cottage.xpath(".//div/div[2]/p/strike/text()").get(),
                 'location':cottage.xpath("normalize-space(.//div[@class='center-column']/div/a[2]/span/text())").get(),
                 'sleeps':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li/em/text())").get(),
                 'bedrooms':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li[2]/em/text())").get(),
                 'pets':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li[3]/em/text())").get(),
                 'customer_ratings':cottage.xpath(".//div[@class='center-column']/ul[@class='prop-info ']/div[@class='customer_rating17321']/p/text()").get(),
+                'hot_tub':cottage.xpath(".//div[@class='property-primary from-map-1607']/div[2]/div[@class='kep-4614']/ul/li[@data-type='Hot Tub']/text()").get(),
                 'provider':'Sykes',
                 'date_scraped': datetime.date.today()
 
