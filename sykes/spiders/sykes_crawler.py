@@ -19,6 +19,7 @@ class SykesCrawlerSpider(CrawlSpider):
             yield {
                 'title':cottage.xpath(".//div[@class='prop-head-container ']/a/hgroup/h2/text()").get(),
                 'price_from':cottage.xpath(".//div/div[2]/p/em/text()").get().replace('£',''),
+                'was_price':cottage.xpath(".//div/div[2]/p/strike/text()").get().replace('£',''),
                 'location':cottage.xpath("normalize-space(.//div[@class='center-column']/div/a[2]/span/text())").get(),
                 'sleeps':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li/em/text())").get(),
                 'bedrooms':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li[2]/em/text())").get(),
