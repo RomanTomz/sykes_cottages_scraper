@@ -4,7 +4,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import datetime 
 
-
+url_string = "www.sykescottages.co.uk"
 class SykesCrawlerSpider(CrawlSpider):
     name = 'sykes_crawler'
     allowed_domains = ['sykescottages.co.uk']
@@ -24,9 +24,10 @@ class SykesCrawlerSpider(CrawlSpider):
                 'sleeps':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li/em/text())").get(),
                 'bedrooms':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li[2]/em/text())").get(),
                 'pets':cottage.xpath("normalize-space(.//div[@class='center-column']/ul/li[3]/em/text())").get(),
-                'customer_ratings':cottage.xpath(".//div[@class='center-column']/ul[@class='prop-info ']/div[@class='customer_rating17321']/p/text()").get(),
+                'provider_rating':cottage.xpath("count(./div/div/div/ul[2]/li/p/span/svg/@version)").get(),
                 'hot_tub':cottage.xpath(".//div[@class='property-primary from-map-1607']/div[2]/div[@class='kep-4614']/ul/li[@data-type='Hot Tub']/text()").get(),
                 'provider':'Sykes',
-                'date_scraped': datetime.date.today()
+                'date_scraped': datetime.date.today(),
+                'url':url_string+cottage.xpath(".//div/div/div/a/@href").get()
 
             }
